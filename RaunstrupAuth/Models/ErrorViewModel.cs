@@ -1,6 +1,6 @@
 using System;
 
-namespace Raunstrup.Models
+namespace RaunstrupAuth.Models
 {
     public class ErrorViewModel
     {

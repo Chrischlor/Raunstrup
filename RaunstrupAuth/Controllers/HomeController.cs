@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Raunstrup.Models;
+using RaunstrupAuth.Models;
 
-namespace Raunstrup.Controllers
+namespace RaunstrupAuth.Controllers
 {
     public class HomeController : Controller
     {
