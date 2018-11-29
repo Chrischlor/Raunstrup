@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
     public partial class Medarbejderliste
     {
+        [Key]
         public int Mlid { get; set; }
         public int? Tid { get; set; }
         public int? Mid { get; set; }

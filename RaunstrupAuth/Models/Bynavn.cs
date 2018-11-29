@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
@@ -9,9 +10,9 @@ namespace RaunstrupAuth.Models
         {
             Adresse = new HashSet<Adresse>();
         }
-
-        public int Byid { get; set; }
-        public int? Postnummer { get; set; }
+        [Key]
+        public int ByID { get; set; }
+        public int Postnummer { get; set; }
         public string Navn { get; set; }
 
         public ICollection<Adresse> Adresse { get; set; }

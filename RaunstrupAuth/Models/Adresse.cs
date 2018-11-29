@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
@@ -10,9 +11,9 @@ namespace RaunstrupAuth.Models
             Kunde = new HashSet<Kunde>();
             Medarbejder = new HashSet<Medarbejder>();
         }
-
-        public int Aid { get; set; }
-        public int? Byid { get; set; }
+        [Key]
+        public int AID { get; set; }
+        public int Byid { get; set; }
         public string Vejnavn { get; set; }
         public string Husnummer { get; set; }
 

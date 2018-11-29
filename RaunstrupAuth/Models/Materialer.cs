@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
@@ -9,8 +10,8 @@ namespace RaunstrupAuth.Models
         {
             Indkøbsliste = new HashSet<Indkøbsliste>();
         }
-
-        public int Varenummer { get; set; }
+        [Key]
+        public int materialeID { get; set; }
         public string Navn { get; set; }
         public int? Indkøbspris { get; set; }
         public int? Salgspris { get; set; }
