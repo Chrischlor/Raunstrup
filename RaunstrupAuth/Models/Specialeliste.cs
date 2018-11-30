@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Speciale
+    public class Specialeliste
     {
-        [Key]
-        public int Spid { get; set; }
-        public string SpecialeNavn { get; set; }
+ 
+
+
     }
 }
