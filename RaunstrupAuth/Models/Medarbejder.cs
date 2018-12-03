@@ -20,6 +20,6 @@ namespace RaunstrupAuth.Models
 
         public Adresse A { get; set; }
         public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
-        public ICollection<Specialeliste> Specialelise { get; set; }
+        //public ICollection<Specialeliste> Specialelise { get; set; }
     }
 }
