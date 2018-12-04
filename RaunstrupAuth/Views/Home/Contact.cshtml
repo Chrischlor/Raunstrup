@@ -1,17 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Contact";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+﻿@model Email
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+<form method="post">
+    Navn:  <input asp-for="Navn" /> <br />
+    Email:  <input asp-for="Mail" /> <br />
+    Emne:  <input asp-for="Emne" /> <br />
+    Besked: <input asp-for="Besked" /><br />
+    <button type="submit">Send Besked</button>
+</form>
+
