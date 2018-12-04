@@ -6,6 +6,9 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RaunstrupAuth.Models;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace RaunstrupAuth.Controllers
 {
@@ -29,29 +32,42 @@ namespace RaunstrupAuth.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
-            OnPost();
-            
         }
-        public async Task OnPost()
+        [HttpPost]
+        public ActionResult Contact(Contact contact)
         {
-            Email e = new Email();
-            using (var smtp = new SmtpClient())
+            string navn = contact.Navn;
+            string mail = contact.Mail;
+            string emne = contact.Emne;
+            string besked = contact.Besked;
+
+            SendMail(navn, mail, emne, besked);
+            return View();
+
+        }
+        public void SendMail(string name, string email, string subject, string messageBody)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(name, email));
+            message.To.Add(new MailboxAddress("Mads", "testermgr@gmail.com"));
+            message.Subject = subject;
+            message.Body = new TextPart("plain")
             {
-                smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                smtp.PickupDirectoryLocation = "Runebjepsen@gmail.com";
-                var msg = new MailMessage
-                {
-                    Body = e.Besked,
-                    Subject = e.Emne,
-                    From = new MailAddress(e.Mail)
+                Text = messageBody
+            };
 
-                };
-                msg.To.Add(e.Navn);
-                await smtp.SendMailAsync(msg);
-
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("testermgr@gmail.com", "1234WEOW");
+                client.Send(message);
+                client.Disconnect(true);
 
             }
         }
+
+
+
         public IActionResult Privacy()
         {
             return View();
