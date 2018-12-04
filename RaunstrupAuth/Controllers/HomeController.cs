@@ -48,12 +48,12 @@ namespace RaunstrupAuth.Controllers
         public void SendMail(string name, string email, string subject, string messageBody)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(name, email));
+            message.From.Add(new MailboxAddress(name, email)); 
             message.To.Add(new MailboxAddress("Mads", "testermgr@gmail.com"));
             message.Subject = subject;
             message.Body = new TextPart("plain")
             {
-                Text = messageBody
+                Text = messageBody + " sendt fra: " + email
             };
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())
