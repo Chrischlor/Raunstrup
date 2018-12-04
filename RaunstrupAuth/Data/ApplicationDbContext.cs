@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Data
 {
@@ -12,5 +13,6 @@ namespace RaunstrupAuth.Data
             : base(options)
         {
         }
+        public DbSet<Kunde> Kunde { get; set; }
     }
 }
