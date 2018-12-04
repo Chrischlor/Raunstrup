@@ -34,7 +34,7 @@ namespace RaunstrupAuth.Controllers
             }
 
             var materialer = await _context.Materialer
-                .FirstOrDefaultAsync(m => m.materialeID == id);
+                .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace RaunstrupAuth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("materialeID,Navn,Indkøbspris,Salgspris")] Materialer materialer)
         {
-            if (id != materialer.materialeID)
+            if (id != materialer.Varenummer)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaterialerExists(materialer.materialeID))
+                    if (!MaterialerExists(materialer.Varenummer))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace RaunstrupAuth.Controllers
             }
 
             var materialer = await _context.Materialer
-                .FirstOrDefaultAsync(m => m.materialeID == id);
+                .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace RaunstrupAuth.Controllers
 
         private bool MaterialerExists(int id)
         {
-            return _context.Materialer.Any(e => e.materialeID == id);
+            return _context.Materialer.Any(e => e.Varenummer == id);
         }
     }
 }

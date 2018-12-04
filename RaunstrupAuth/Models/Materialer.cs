@@ -11,7 +11,7 @@ namespace RaunstrupAuth.Models
             Indkøbsliste = new HashSet<Indkøbsliste>();
         }
         [Key]
-        public int materialeID { get; set; }
+        public int Varenummer { get; set; }
         public string Navn { get; set; }
         public int? Indkøbspris { get; set; }
         public int? Salgspris { get; set; }
