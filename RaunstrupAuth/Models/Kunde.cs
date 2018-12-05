@@ -4,12 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Kunde
+    public class Kunde
     {
-        public Kunde()
-        {
-            Tilbud = new HashSet<Tilbud>();
-        }
         [Key]
         public int Kid { get; set; }
         public string Navn { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Medarbejder
+    public class Medarbejder
     {
 
         [Key]
@@ -16,9 +16,7 @@ namespace RaunstrupAuth.Models
         public bool Fudd { get; set; }
         public int SpecialeID { get; set; }
 
-
         public Adresse adresse { get; set; }
-        public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
         public Speciale speciale { get; set; }
         
     }

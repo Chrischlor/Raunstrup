@@ -24,9 +24,6 @@ namespace RaunstrupAuth.Models
         public string Besked { get; set; } = "";
 
 
-        public string PostedMessage { get; set; } = "";
-
-
         public void OnGet(int id)
         {
 

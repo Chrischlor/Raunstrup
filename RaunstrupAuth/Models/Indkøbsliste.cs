@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Indkøbsliste
+    public class Indkøbsliste
     {
         [Key]
         public int IID { get; set; }

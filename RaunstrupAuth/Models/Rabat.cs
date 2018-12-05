@@ -6,12 +6,7 @@ namespace RaunstrupAuth.Models
 {
     public partial class Rabat
     {
-        public Rabat()
-        {
-            Indkøbsliste = new HashSet<Indkøbsliste>();
-            Medarbejderliste = new HashSet<Medarbejderliste>();
-            Tilbud = new HashSet<Tilbud>();
-        }
+
         [Key]
         public int Rid { get; set; }
         public string Rabat1 { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Speciale
+    public class Speciale
     {
         [Key]
         public int Spid { get; set; }

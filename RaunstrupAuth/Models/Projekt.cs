@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Projekt
+    public class Projekt
     {
         [Key]
         public int Pid { get; set; }
