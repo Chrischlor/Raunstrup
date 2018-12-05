@@ -6,10 +6,7 @@ namespace RaunstrupAuth.Models
 {
     public partial class Medarbejder
     {
-        public Medarbejder()
-        {
-            Medarbejderliste = new HashSet<Medarbejderliste>();
-        }
+
         [Key]
         public int MID { get; set; }
         public string Navn { get; set; }
@@ -20,9 +17,9 @@ namespace RaunstrupAuth.Models
         public int SpecialeID { get; set; }
 
 
-        public Adresse A { get; set; }
+        public Adresse adresse { get; set; }
         public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
-        public Speciale S { get; set; }
+        public Speciale speciale { get; set; }
         
     }
 }

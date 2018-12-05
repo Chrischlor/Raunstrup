@@ -4,14 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RaunstrupAuth.Models
 {
-    public partial class Tilbud
+    public class Tilbud
     {
-        public Tilbud()
-        {
-            Indkøbsliste = new HashSet<Indkøbsliste>();
-            Medarbejderliste = new HashSet<Medarbejderliste>();
-            Projekt = new HashSet<Projekt>();
-        }
         [Key]
         public int Tid { get; set; }
         public string Projekttitle { get; set; }

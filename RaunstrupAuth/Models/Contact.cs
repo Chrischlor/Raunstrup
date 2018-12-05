@@ -29,8 +29,7 @@ namespace RaunstrupAuth.Models
 
         public void OnGet(int id)
         {
-            ViewData["PostedMessage"] = "Your Message has been sent [ViewData]";
-            PostedMessage = "Your Message has been sent [property]";
+
         }
 
 
