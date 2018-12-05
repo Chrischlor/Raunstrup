@@ -10,8 +10,8 @@ using RaunstrupAuth.Data;
 namespace RaunstrupAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181204112522_initialcreate")]
-    partial class initialcreate
+    [Migration("20181205121155_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,7 +211,8 @@ namespace RaunstrupAuth.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Navn");
+                    b.Property<string>("Navn")
+                        .IsRequired();
 
                     b.Property<int>("Postnummer");
 
@@ -234,7 +235,7 @@ namespace RaunstrupAuth.Data.Migrations
 
                     b.Property<int?>("Varenummer");
 
-                    b.Property<int?>("VarenummerNavigationmaterialeID");
+                    b.Property<int>("indkøbsgruppe");
 
                     b.HasKey("IID");
 
@@ -242,7 +243,7 @@ namespace RaunstrupAuth.Data.Migrations
 
                     b.HasIndex("Tid");
 
-                    b.HasIndex("VarenummerNavigationmaterialeID");
+                    b.HasIndex("Varenummer");
 
                     b.ToTable("Indkøbsliste");
                 });
@@ -263,14 +264,37 @@ namespace RaunstrupAuth.Data.Migrations
 
                     b.HasKey("Kid");
 
-                    b.HasIndex("Aid");
+                    b.HasIndex("Aid")
+                        .IsUnique()
+                        .HasFilter("[Aid] IS NOT NULL");
 
                     b.ToTable("Kunde");
                 });
 
+            modelBuilder.Entity("RaunstrupAuth.Models.materialeIndkøb", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Antal");
+
+                    b.Property<int?>("IndkøbslisteIID");
+
+                    b.Property<int?>("MaterialerVarenummer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("IndkøbslisteIID");
+
+                    b.HasIndex("MaterialerVarenummer");
+
+                    b.ToTable("materialeIndkøb");
+                });
+
             modelBuilder.Entity("RaunstrupAuth.Models.Materialer", b =>
                 {
-                    b.Property<int>("materialeID")
+                    b.Property<int>("Varenummer")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -280,7 +304,7 @@ namespace RaunstrupAuth.Data.Migrations
 
                     b.Property<int?>("Salgspris");
 
-                    b.HasKey("materialeID");
+                    b.HasKey("Varenummer");
 
                     b.ToTable("Materialer");
                 });
@@ -295,6 +319,8 @@ namespace RaunstrupAuth.Data.Migrations
 
                     b.Property<bool>("Fudd");
 
+                    b.Property<int?>("MedarbejderlisteMlid");
+
                     b.Property<string>("Navn");
 
                     b.Property<int>("SpecialeID");
@@ -306,6 +332,8 @@ namespace RaunstrupAuth.Data.Migrations
                     b.HasKey("MID");
 
                     b.HasIndex("Aid");
+
+                    b.HasIndex("MedarbejderlisteMlid");
 
                     b.HasIndex("SpecialeID");
 
@@ -325,6 +353,8 @@ namespace RaunstrupAuth.Data.Migrations
                     b.Property<int>("Tid");
 
                     b.Property<int>("Timer");
+
+                    b.Property<int>("medarbejderGruppe");
 
                     b.HasKey("Mlid");
 
@@ -466,26 +496,41 @@ namespace RaunstrupAuth.Data.Migrations
                         .WithMany("Indkøbsliste")
                         .HasForeignKey("Tid");
 
-                    b.HasOne("RaunstrupAuth.Models.Materialer", "VarenummerNavigation")
+                    b.HasOne("RaunstrupAuth.Models.Materialer", "materialer")
                         .WithMany("Indkøbsliste")
-                        .HasForeignKey("VarenummerNavigationmaterialeID");
+                        .HasForeignKey("Varenummer");
                 });
 
             modelBuilder.Entity("RaunstrupAuth.Models.Kunde", b =>
                 {
                     b.HasOne("RaunstrupAuth.Models.Adresse", "A")
-                        .WithMany("Kunde")
-                        .HasForeignKey("Aid");
+                        .WithOne("Kunde")
+                        .HasForeignKey("RaunstrupAuth.Models.Kunde", "Aid");
+                });
+
+            modelBuilder.Entity("RaunstrupAuth.Models.materialeIndkøb", b =>
+                {
+                    b.HasOne("RaunstrupAuth.Models.Indkøbsliste")
+                        .WithMany("materialeIndkøb")
+                        .HasForeignKey("IndkøbslisteIID");
+
+                    b.HasOne("RaunstrupAuth.Models.Materialer", "Materialer")
+                        .WithMany()
+                        .HasForeignKey("MaterialerVarenummer");
                 });
 
             modelBuilder.Entity("RaunstrupAuth.Models.Medarbejder", b =>
                 {
-                    b.HasOne("RaunstrupAuth.Models.Adresse", "A")
+                    b.HasOne("RaunstrupAuth.Models.Adresse", "adresse")
                         .WithMany("Medarbejder")
                         .HasForeignKey("Aid")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RaunstrupAuth.Models.Speciale", "S")
+                    b.HasOne("RaunstrupAuth.Models.Medarbejderliste")
+                        .WithMany("medarbejder")
+                        .HasForeignKey("MedarbejderlisteMlid");
+
+                    b.HasOne("RaunstrupAuth.Models.Speciale", "speciale")
                         .WithMany()
                         .HasForeignKey("SpecialeID")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -494,7 +539,7 @@ namespace RaunstrupAuth.Data.Migrations
             modelBuilder.Entity("RaunstrupAuth.Models.Medarbejderliste", b =>
                 {
                     b.HasOne("RaunstrupAuth.Models.Medarbejder", "M")
-                        .WithMany("Medarbejderliste")
+                        .WithMany()
                         .HasForeignKey("Mid")
                         .OnDelete(DeleteBehavior.Cascade);
 
