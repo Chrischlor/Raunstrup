@@ -10,23 +10,23 @@ using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Controllers
 {
-    public class KundeController : Controller
+    public class AdresseController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public KundeController(ApplicationDbContext context)
+        public AdresseController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Kunde
+        // GET: Adresse
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Kunde.Include(k => k.A);
+            var applicationDbContext = _context.Adresse.Include(a => a.By);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Kunde/Details/5
+        // GET: Adresse/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,47 +34,44 @@ namespace RaunstrupAuth.Controllers
                 return NotFound();
             }
 
-            var kunde = await _context.Kunde
-                .Include(k => k.A)
-                .FirstOrDefaultAsync(m => m.Kid == id);
-            if (kunde == null)
+            var adresse = await _context.Adresse
+                .Include(a => a.By)
+                .FirstOrDefaultAsync(m => m.AID == id);
+            if (adresse == null)
             {
                 return NotFound();
             }
 
-            return View(kunde);
+            return View(adresse);
         }
 
-        // GET: Kunde/Create
+        // GET: Adresse/Create
         public IActionResult Create()
         {
-            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn");
+            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID");
             return View();
         }
 
-        // POST: Kunde/Create
+        // POST: Adresse/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Kid,Byid,Navn,Tlf,Mail")] Kunde kunde, [Bind("Vejnavn, Husnummer")]Adresse A, [Bind("Navn, Byid")] Bynavn b)
+        public async Task<IActionResult> Create([Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse, Bynavn bynavn)
         {
             if (ModelState.IsValid)
             {
-                A.Byid = b.ByID;
-                //_context.Add(b);
-                _context.Add(A);
-                _context.Add(kunde);
-                
-                
+               
+                _context.Add(adresse);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn", b.Navn);
-            return View(kunde);
+            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
+            return Redirect("/kunde/Create");
+                //View(adresse);
         }
 
-        // GET: Kunde/Edit/5
+        // GET: Adresse/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,23 +79,23 @@ namespace RaunstrupAuth.Controllers
                 return NotFound();
             }
 
-            var kunde = await _context.Kunde.FindAsync(id);
-            if (kunde == null)
+            var adresse = await _context.Adresse.FindAsync(id);
+            if (adresse == null)
             {
                 return NotFound();
             }
-            ViewData["Aid"] = new SelectList(_context.Set<Adresse>(), "AID", "AID", kunde.Aid);
-            return View(kunde);
+            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
+            return View(adresse);
         }
 
-        // POST: Kunde/Edit/5
+        // POST: Adresse/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
+        public async Task<IActionResult> Edit(int id, [Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse)
         {
-            if (id != kunde.Kid)
+            if (id != adresse.AID)
             {
                 return NotFound();
             }
@@ -107,12 +104,12 @@ namespace RaunstrupAuth.Controllers
             {
                 try
                 {
-                    _context.Update(kunde);
+                    _context.Update(adresse);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KundeExists(kunde.Kid))
+                    if (!AdresseExists(adresse.AID))
                     {
                         return NotFound();
                     }
@@ -123,11 +120,11 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Set<Adresse>(), "AID", "AID", kunde.Aid);
-            return View(kunde);
+            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
+            return View(adresse);
         }
 
-        // GET: Kunde/Delete/5
+        // GET: Adresse/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,31 +132,31 @@ namespace RaunstrupAuth.Controllers
                 return NotFound();
             }
 
-            var kunde = await _context.Kunde
-                .Include(k => k.A)
-                .FirstOrDefaultAsync(m => m.Kid == id);
-            if (kunde == null)
+            var adresse = await _context.Adresse
+                .Include(a => a.By)
+                .FirstOrDefaultAsync(m => m.AID == id);
+            if (adresse == null)
             {
                 return NotFound();
             }
 
-            return View(kunde);
+            return View(adresse);
         }
 
-        // POST: Kunde/Delete/5
+        // POST: Adresse/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var kunde = await _context.Kunde.FindAsync(id);
-            _context.Kunde.Remove(kunde);
+            var adresse = await _context.Adresse.FindAsync(id);
+            _context.Adresse.Remove(adresse);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool KundeExists(int id)
+        private bool AdresseExists(int id)
         {
-            return _context.Kunde.Any(e => e.Kid == id);
+            return _context.Adresse.Any(e => e.AID == id);
         }
     }
 }

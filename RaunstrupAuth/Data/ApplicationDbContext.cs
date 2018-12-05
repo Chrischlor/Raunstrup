@@ -15,5 +15,7 @@ namespace RaunstrupAuth.Data
         }
         public DbSet<Kunde> Kunde { get; set; }
         public DbSet<Materialer> Materialer { get; set; }
+        public DbSet<Adresse> Adresse { get; set; }
+        public DbSet<RaunstrupAuth.Models.Bynavn> Bynavn { get; set; }
     }
 }
