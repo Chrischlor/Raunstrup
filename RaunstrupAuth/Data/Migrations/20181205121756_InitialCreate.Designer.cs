@@ -10,7 +10,7 @@ using RaunstrupAuth.Data;
 namespace RaunstrupAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181205121155_InitialCreate")]
+    [Migration("20181205121756_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
