@@ -24,7 +24,6 @@ namespace Raunstrup.Controllers
             var reinstdbContext = _context.Adresse.Include(a => a.By);
             return View(await reinstdbContext.ToListAsync());
         }
-
         // GET: Adresses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +47,7 @@ namespace Raunstrup.Controllers
             var ByQuery = from d in _context.Bynavn
                              orderby d.Navn
                           select d;
-            ViewBag.DepartmentID = new SelectList(ByQuery.AsNoTracking(), "Byid", "Navn", selectedBy);
+            ViewBag.Byid = new SelectList(ByQuery.AsNoTracking(), "Byid", "Navn", selectedBy);
         }
 
         // GET: Adresses/Create
