@@ -47,7 +47,7 @@ namespace Raunstrup.Controllers
         // GET: Kundes/Create
         public IActionResult Create()
         {
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid");
+            PopulateAdresseDropDownList();
             return View();
         }
 
@@ -81,7 +81,7 @@ namespace Raunstrup.Controllers
             {
                 return NotFound();
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
+            PopulateAdresseDropDownList();
             return View(kunde);
         }
 
@@ -90,7 +90,7 @@ namespace Raunstrup.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<IActionResult> EditPost(int? id, [Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
         {
             if (id == null)
             {
@@ -105,6 +105,7 @@ namespace Raunstrup.Controllers
             {
                 try
                 {
+                    _context.Update(kunde);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -123,8 +124,9 @@ namespace Raunstrup.Controllers
             var kundeQuery = from d in _context.Adresse
                                    orderby d.Vejnavn
                                    select d;
-            ViewBag.DepartmentID = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
+            ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
         }
+
 
         // GET: Kundes/Delete/5
         public async Task<IActionResult> Delete(int? id)
