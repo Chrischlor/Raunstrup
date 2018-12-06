@@ -90,17 +90,14 @@ namespace Raunstrup.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id, [Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
+        public async Task<IActionResult> Edit(int? id, [Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var kundeToUpdate = await _context.Kunde.SingleOrDefaultAsync(k => k.Kid == id);
-
-            if (await TryUpdateModelAsync<Kunde>(kundeToUpdate, "",
-                k => k.Navn, k => k.Aid, k => k.Tlf, k => k.Mail)) { 
+            if (ModelState.IsValid) { 
 }
             {
                 try
@@ -116,8 +113,8 @@ namespace Raunstrup.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            PopulateAdresseDropDownList(kundeToUpdate.Aid);
-            return View(kundeToUpdate);
+            ViewData["Aid"] = new SelectList(_context.Kunde, "Aid", "Aid", kunde.Aid);
+            return View(kunde);
         }
         private void PopulateAdresseDropDownList(object selectedKunde = null)
         {
