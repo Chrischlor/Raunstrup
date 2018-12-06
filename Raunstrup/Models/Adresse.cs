@@ -21,6 +21,6 @@ namespace Raunstrup.Models
         public ICollection<Kunde> Kunde { get; set; }
         public ICollection<Medarbejder> Medarbejder { get; set; }
 
-        public SelectList VejnavnList { get; set; }
+        //public SelectList VejnavnList { get; set; }
     }
 }
