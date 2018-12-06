@@ -87,7 +87,7 @@ namespace Raunstrup.Controllers
             {
                 return NotFound();
             }
-            ViewData["Byid"] = new SelectList(_context.Bynavn, "Byid", "Byid", adresse.Byid);
+            PopulateBynavnDropDownList();
             return View(adresse);
         }
 
