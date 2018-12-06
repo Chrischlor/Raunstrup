@@ -88,37 +88,42 @@ namespace Raunstrup.Controllers
         // POST: Kundes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Post")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
+        public async Task<IActionResult> EditPost(int? id)
         {
-            if (id != kunde.Kid)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var kundeToUpdate = await _context.Kunde.SingleOrDefaultAsync(k => k.Kid == id);
+
+            if (await TryUpdateModelAsync<Kunde>(kundeToUpdate, "",
+                k => k.Navn, k => k.Aid, k => k.Tlf, k => k.Mail)) { 
+}
             {
                 try
                 {
-                    _context.Update(kunde);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KundeExists(kunde.Kid))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                      "Try again, and if the problem persists, " +
+                      "see your system administrator.");
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
-            return View(kunde);
+            PopulateAdresseDropDownList(kundeToUpdate.Aid);
+            return View(kundeToUpdate);
+        }
+        private void PopulateAdresseDropDownList(object selectedKunde = null)
+        {
+            var kundeQuery = from d in _context.Adresse
+                                   orderby d.Vejnavn
+                                   select d;
+            ViewBag.DepartmentID = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
         }
 
         // GET: Kundes/Delete/5
