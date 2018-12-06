@@ -27,19 +27,19 @@ namespace RaunstrupAuth.Data
         public DbSet<Speciale> Speciale { get; set; }
         public DbSet<Tilbud> Tilbud { get; set; }
 
-        public override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Adresse>().ToTable("Adresse");
-            modelBuilder.Entity<Bynavn>().ToTable("Bynavn");
-            modelBuilder.Entity<Indkøbsliste>().ToTable("Indkøbsliste");
-            modelBuilder.Entity<Kunde>().ToTable("Kunde");
-            modelBuilder.Entity<Materialer>().ToTable("Materialer");
-            modelBuilder.Entity<Medarbejder>().ToTable("Medarbejder");
-            modelBuilder.Entity<Medarbejderliste>().ToTable("Medarbejderliste");
-            modelBuilder.Entity<Projekt>().ToTable("Projekt");
-            modelBuilder.Entity<Rabat>().ToTable("Rabat");
-            modelBuilder.Entity<Speciale>().ToTable("Speciale");
-            modelBuilder.Entity<Tilbud>().ToTable("Tilbud");
-        }
+        //public override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Adresse>().ToTable("Adresse");
+        //    modelBuilder.Entity<Bynavn>().ToTable("Bynavn");
+        //    modelBuilder.Entity<Indkøbsliste>().ToTable("Indkøbsliste");
+        //    modelBuilder.Entity<Kunde>().ToTable("Kunde");
+        //    modelBuilder.Entity<Materialer>().ToTable("Materialer");
+        //    modelBuilder.Entity<Medarbejder>().ToTable("Medarbejder");
+        //    modelBuilder.Entity<Medarbejderliste>().ToTable("Medarbejderliste");
+        //    modelBuilder.Entity<Projekt>().ToTable("Projekt");
+        //    modelBuilder.Entity<Rabat>().ToTable("Rabat");
+        //    modelBuilder.Entity<Speciale>().ToTable("Speciale");
+        //    modelBuilder.Entity<Tilbud>().ToTable("Tilbud");
+        //}
     }
 }
