@@ -36,6 +36,9 @@
                     <li><a asp-area="" asp-controller="Kunde" asp-action="Index">Kundeoversigt</a></li>
                     <li><a asp-area="" asp-controller="Materialer" asp-action="Index">Materialer</a></li>
                     <li><a asp-area="" asp-controller="Bynavn" asp-action="Index">Byer</a></li>
+                    <li><a asp-area="" asp-controller="Kundes" asp-action="Index">Kunder</a></li>
+                    <li><a asp-area="" asp-controller="Adresses" asp-action="Index">Adresser</a></li>
+                    <li><a asp-area="" asp-controller="Materialers" asp-action="Index">Materialer</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -43,7 +46,6 @@
     </nav>
 
     <partial name="_CookieConsentPartial" />
-
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace RaunstrupAuth.Models
+namespace Raunstrup.Models
 {
     public partial class Speciale
     {
-        [Key]
+        public Speciale()
+        {
+            Medarbejder = new HashSet<Medarbejder>();
+        }
+
         public int Spid { get; set; }
-        public string SpecialeNavn { get; set; }
+        public string Speciale1 { get; set; }
+
+        public ICollection<Medarbejder> Medarbejder { get; set; }
     }
 }

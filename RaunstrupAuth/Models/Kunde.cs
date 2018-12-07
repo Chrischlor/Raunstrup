@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace RaunstrupAuth.Models
+namespace Raunstrup.Models
 {
     public partial class Kunde
     {
@@ -10,7 +9,7 @@ namespace RaunstrupAuth.Models
         {
             Tilbud = new HashSet<Tilbud>();
         }
-        [Key]
+
         public int Kid { get; set; }
         public string Navn { get; set; }
         public int? Aid { get; set; }
