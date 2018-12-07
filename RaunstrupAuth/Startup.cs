@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using RaunstrupAuth.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Raunstrup.Models;
 
 namespace RaunstrupAuth
 {

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace Raunstrup.Models
+namespace RaunstrupAuth.Models
 {
     public partial class Indkøbsliste
     {
-        public int Iid { get; set; }
+        [Key]
+        public int IID { get; set; }
         public int? Tid { get; set; }
         public int? Varenummer { get; set; }
         public int? Antal { get; set; }

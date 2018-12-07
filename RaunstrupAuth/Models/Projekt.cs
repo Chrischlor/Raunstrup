@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace Raunstrup.Models
+namespace RaunstrupAuth.Models
 {
     public partial class Projekt
     {
-        public int ProjektId { get; set; }
+        [Key]
+        public int Pid { get; set; }
         public int? Tid { get; set; }
 
         public Tilbud T { get; set; }
