@@ -12,7 +12,7 @@ namespace RaunstrupAuth.Models
             Medarbejder = new HashSet<Medarbejder>();
         }
         [Key]
-        public int AID { get; set; }
+        public int Aid { get; set; }
         public int Byid { get; set; }
         public string Vejnavn { get; set; }
         public string Husnummer { get; set; }

@@ -6,6 +6,7 @@ namespace RaunstrupAuth.Models
 {
     public partial class Kunde
     {
+        
         public Kunde()
         {
             Tilbud = new HashSet<Tilbud>();

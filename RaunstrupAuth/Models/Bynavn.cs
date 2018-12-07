@@ -11,8 +11,8 @@ namespace RaunstrupAuth.Models
             Adresse = new HashSet<Adresse>();
         }
         [Key]
-        public int ByID { get; set; }
-        public int Postnummer { get; set; }
+        public int Byid { get; set; }
+        public int? Postnummer { get; set; }
         public string Navn { get; set; }
 
         public ICollection<Adresse> Adresse { get; set; }

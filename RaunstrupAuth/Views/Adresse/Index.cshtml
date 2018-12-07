@@ -34,12 +34,12 @@
                 @Html.DisplayFor(modelItem => item.Husnummer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.By.ByID)
+                @Html.DisplayFor(modelItem => item.By.Byid)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Aid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Aid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Aid">Delete</a>
             </td>
         </tr>
 }

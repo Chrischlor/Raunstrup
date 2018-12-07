@@ -61,7 +61,7 @@ namespace RaunstrupAuth.Controllers
         {
             if (ModelState.IsValid)
             {
-                A.Byid = b.ByID;
+                A.Byid = b.Byid;
                 //_context.Add(b);
                 _context.Add(A);
                 _context.Add(kunde);

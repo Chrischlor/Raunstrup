@@ -36,7 +36,7 @@ namespace RaunstrupAuth.Controllers
 
             var adresse = await _context.Adresse
                 .Include(a => a.By)
-                .FirstOrDefaultAsync(m => m.AID == id);
+                .FirstOrDefaultAsync(m => m.Aid == id);
             if (adresse == null)
             {
                 return NotFound();
@@ -95,7 +95,7 @@ namespace RaunstrupAuth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse)
         {
-            if (id != adresse.AID)
+            if (id != adresse.Aid)
             {
                 return NotFound();
             }
@@ -109,7 +109,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdresseExists(adresse.AID))
+                    if (!AdresseExists(adresse.Aid))
                     {
                         return NotFound();
                     }
@@ -134,7 +134,7 @@ namespace RaunstrupAuth.Controllers
 
             var adresse = await _context.Adresse
                 .Include(a => a.By)
-                .FirstOrDefaultAsync(m => m.AID == id);
+                .FirstOrDefaultAsync(m => m.Aid == id);
             if (adresse == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace RaunstrupAuth.Controllers
 
         private bool AdresseExists(int id)
         {
-            return _context.Adresse.Any(e => e.AID == id);
+            return _context.Adresse.Any(e => e.Aid == id);
         }
     }
 }

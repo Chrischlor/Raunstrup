@@ -34,7 +34,7 @@ namespace RaunstrupAuth.Controllers
             }
 
             var bynavn = await _context.Bynavn
-                .FirstOrDefaultAsync(m => m.ByID == id);
+                .FirstOrDefaultAsync(m => m.Byid == id);
             if (bynavn == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace RaunstrupAuth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ByID,Postnummer,Navn")] Bynavn bynavn)
         {
-            if (id != bynavn.ByID)
+            if (id != bynavn.Byid)
             {
                 return NotFound();
             }
@@ -103,7 +103,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BynavnExists(bynavn.ByID))
+                    if (!BynavnExists(bynavn.Byid))
                     {
                         return NotFound();
                     }
@@ -126,7 +126,7 @@ namespace RaunstrupAuth.Controllers
             }
 
             var bynavn = await _context.Bynavn
-                .FirstOrDefaultAsync(m => m.ByID == id);
+                .FirstOrDefaultAsync(m => m.Byid == id);
             if (bynavn == null)
             {
                 return NotFound();
@@ -148,7 +148,7 @@ namespace RaunstrupAuth.Controllers
 
         private bool BynavnExists(int id)
         {
-            return _context.Bynavn.Any(e => e.ByID == id);
+            return _context.Bynavn.Any(e => e.Byid == id);
         }
     }
 }
