@@ -10,24 +10,24 @@ using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Controllers
 {
-    public class KundeManagerController : Controller
-    {
-        private readonly ApplicationDbContext _context;
+    //public class KundeManagerController : Controller
+    //{
+    //    private readonly ApplicationDbContext _context;
 
-        public KundeManagerController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+    //    public KundeManagerController(ApplicationDbContext context)
+    //    {
+    //        _context = context;
+    //    }
 
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Create()
-        {
-            return View();
-        }
+    //    // GET: /<controller>/
+    //    public IActionResult Index()
+    //    {
+    //        return View();
+    //    }
+    //    public IActionResult Create()
+    //    {
+    //        return View();
+    //    }
 
-    }
+    //}
 }
