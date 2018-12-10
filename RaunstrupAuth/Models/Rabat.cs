@@ -14,7 +14,7 @@ namespace RaunstrupAuth.Models
         }
         [Key]
         public int Rid { get; set; }
-        public string Rabat1 { get; set; }
+        public string rabat { get; set; }
 
         public ICollection<Indkøbsliste> Indkøbsliste { get; set; }
         public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
