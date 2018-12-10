@@ -17,5 +17,6 @@ namespace RaunstrupAuth.Models
         public int? Salgspris { get; set; }
 
         public ICollection<Indkøbsliste> Indkøbsliste { get; set; }
+
     }
 }

@@ -16,5 +16,6 @@ namespace RaunstrupAuth.Models
         public Rabat R { get; set; }
         public Tilbud T { get; set; }
         public Materialer VarenummerNavigation { get; set; }
+        //public ICollection<Materialer> Materialers { get; set; }
     }
 }
