@@ -49,8 +49,8 @@ namespace RaunstrupAuth.Controllers
         // GET: Medarbejdere/Create
         public IActionResult Create()
         {
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid");
-            ViewData["Spid"] = new SelectList(_context.Speciale, "Spid", "Spid");
+            PopulateAdresseDropDownList();
+            PopulateSpecialeDropDownList();
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", medarbejder.Aid);
+            ViewData["Aid"] = new SelectList(_context.Set<Bynavn>(), "Aid", "Aid", medarbejder.Aid);
             ViewData["Spid"] = new SelectList(_context.Speciale, "Spid", "Spid", medarbejder.Spid);
             return View(medarbejder);
         }
@@ -85,8 +85,8 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", medarbejder.Aid);
-            ViewData["Spid"] = new SelectList(_context.Speciale, "Spid", "Spid", medarbejder.Spid);
+            PopulateAdresseDropDownList();
+            PopulateSpecialeDropDownList();
             return View(medarbejder);
         }
 
@@ -161,6 +161,21 @@ namespace RaunstrupAuth.Controllers
         private bool MedarbejderExists(int id)
         {
             return _context.Medarbejder.Any(e => e.Mid == id);
+        }
+
+        private void PopulateAdresseDropDownList(object selectedAdresse = null)
+        {
+            var kundeQuery = from d in _context.Adresse
+                             orderby d.Vejnavn
+                             select d;
+            ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedAdresse);
+        }
+                private void PopulateSpecialeDropDownList(object selectedSpeciale = null)
+        {
+            var kundeQuery = from d in _context.Speciale
+                             orderby d.SpecialeNavn
+                             select d;
+            ViewBag.Spid = new SelectList(kundeQuery.AsNoTracking(), "Spid", "SpecialeNavn", selectedSpeciale);
         }
     }
 }

@@ -36,7 +36,6 @@ namespace RaunstrupAuth.Controllers
 
             var kunde = await _context.Kunde
                 .Include(k => k.A)
-                .ThenInclude(A => A.Aid)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Kid == id);
             if (kunde == null)

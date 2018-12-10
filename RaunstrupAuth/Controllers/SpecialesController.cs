@@ -46,6 +46,7 @@ namespace RaunstrupAuth.Controllers
         // GET: Speciales/Create
         public IActionResult Create()
         {
+
             return View();
         }
 
@@ -78,6 +79,7 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
+
             return View(speciale);
         }
 
@@ -149,5 +151,7 @@ namespace RaunstrupAuth.Controllers
         {
             return _context.Speciale.Any(e => e.Spid == id);
         }
+
+
     }
 }

@@ -35,16 +35,27 @@
             @Html.DisplayFor(model => model.Fudd)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.A)
+            Speciale
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.A.Aid)
+            @Html.DisplayFor(model => model.Sp.SpecialeNavn)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Sp)
+            Adresse
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Sp.Spid)
+            <table class="table">
+                <tr>
+                    <th>Vejnavn</th>
+                    <th>Husnummer</th>
+                    
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.A.Vejnavn)</td>
+                    <td>@Html.DisplayFor(model => model.A.Husnummer)</td>
+                    
+                </tr>
+            </table>
         </dd>
     </dl>
 </div>
