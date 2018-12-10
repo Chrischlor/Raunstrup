@@ -59,20 +59,15 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Kid,Byid,Navn,Tlf,Mail")] Kunde kunde, [Bind("Vejnavn, Husnummer")]Adresse A, [Bind("Navn, Byid")] Bynavn b)
+        public async Task<IActionResult> Create([Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
         {
             if (ModelState.IsValid)
             {
-                A.Byid = b.Byid;
-                //_context.Add(b);
-                _context.Add(A);
                 _context.Add(kunde);
-                
-                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn", b.Navn);
+            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
             return View(kunde);
         }
 

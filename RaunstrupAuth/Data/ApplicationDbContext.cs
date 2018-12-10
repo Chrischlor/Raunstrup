@@ -27,6 +27,16 @@ namespace RaunstrupAuth.Data
         public DbSet<Speciale> Speciale { get; set; }
         public DbSet<Tilbud> Tilbud { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=den1.mssql8.gear.host;User ID=projektraunstrup;Password=Ro6000t_5!Ei;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            }
+        }
+
+
         //public override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Adresse>().ToTable("Adresse");

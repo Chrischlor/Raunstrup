@@ -63,16 +63,16 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Aid,Byid,Vejnavn,Husnummer")] Adresse adresse)
+        public async Task<IActionResult> Create([Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(adresse);
+                _context.Add(kunde);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            PopulateBynavnDropDownList(adresse.Byid);
-            return View(adresse);
+            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
+            return View(kunde);
         }
 
         // GET: Adresse/Edit/5
