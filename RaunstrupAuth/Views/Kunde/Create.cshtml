@@ -18,9 +18,11 @@
                 <span asp-validation-for="Navn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Aid" class="control-label"></label>
-                <input asp-for="Aid" class="form-control" asp-items="ViewBag.Navn">
-
+                <label asp-for="A" class="control-label">Adresse</label>
+                <select asp-for="Aid" class="form-control" asp-items="ViewBag.Aid">
+                    <option value="">Vælg adresse</option>
+                </select>
+                <span asp-validation-for="Aid" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tlf" class="control-label"></label>
@@ -31,16 +33,6 @@
                 <label asp-for="Mail" class="control-label"></label>
                 <input asp-for="Mail" class="form-control" />
                 <span asp-validation-for="Mail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="A.Vejnavn" class="control-label"></label>
-                <input asp-for="A.Vejnavn" class="form-control" />
-                <span asp-validation-for="A.Vejnavn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="A.Husnummer" class="control-label"></label>
-                <input asp-for="A.Husnummer" class="form-control" />
-                <span asp-validation-for="A.Husnummer" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

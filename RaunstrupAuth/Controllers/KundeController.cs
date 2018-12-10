@@ -50,7 +50,7 @@ namespace RaunstrupAuth.Controllers
         // GET: Kunde/Create
         public IActionResult Create()
         {
-            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn");
+            PopulateAdresseDropDownList();
             return View();
         }
 
@@ -89,7 +89,7 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Aid"] = new SelectList(_context.Set<Adresse>(), "AID", "AID", kunde.Aid);
+            PopulateAdresseDropDownList();
             return View(kunde);
         }
 
@@ -162,6 +162,13 @@ namespace RaunstrupAuth.Controllers
         private bool KundeExists(int id)
         {
             return _context.Kunde.Any(e => e.Kid == id);
+        }
+        private void PopulateAdresseDropDownList(object selectedKunde = null)
+        {
+            var kundeQuery = from d in _context.Adresse
+                             orderby d.Vejnavn
+                             select d;
+            ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
         }
     }
 }
