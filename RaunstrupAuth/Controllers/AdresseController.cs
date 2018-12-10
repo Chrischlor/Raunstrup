@@ -44,11 +44,17 @@ namespace RaunstrupAuth.Controllers
 
             return View(adresse);
         }
-
+        private void PopulateBynavnDropDownList(object selectedBy = null)
+        {
+            var ByQuery = from d in _context.Bynavn
+                          orderby d.Navn
+                          select d;
+            ViewBag.Byid = new SelectList(ByQuery.AsNoTracking(), "Byid", "Navn", selectedBy);
+        }
         // GET: Adresse/Create
         public IActionResult Create()
         {
-            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID");
+            PopulateBynavnDropDownList();
             return View();
         }
 
@@ -57,18 +63,16 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse, Bynavn bynavn)
+        public async Task<IActionResult> Create([Bind("Aid,Byid,Vejnavn,Husnummer")] Adresse adresse)
         {
             if (ModelState.IsValid)
             {
-               
                 _context.Add(adresse);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
-            return Redirect("/kunde/Create");
-                //View(adresse);
+            PopulateBynavnDropDownList(adresse.Byid);
+            return View(adresse);
         }
 
         // GET: Adresse/Edit/5
@@ -84,7 +88,7 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
+            PopulateBynavnDropDownList();
             return View(adresse);
         }
 
@@ -120,7 +124,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Byid"] = new SelectList(_context.Bynavn, "ByID", "ByID", adresse.Byid);
+            ViewData["Byid"] = new SelectList(_context.Bynavn, "Byid", "Byid", adresse.Byid);
             return View(adresse);
         }
 
