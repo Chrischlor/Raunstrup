@@ -48,15 +48,8 @@ namespace RaunstrupAuth.Controllers
         // GET: Kunde/Create
         public IActionResult Create()
         {
-            PopulateAdresseDropDownList();
+            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn");
             return View();
-        }
-        private void PopulateAdresseDropDownList(object selectedKunde = null)
-        {
-            var kundeQuery = from d in _context.Adresse
-                             orderby d.Vejnavn
-                             select d;
-            ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
         }
 
         // POST: Kunde/Create
@@ -64,15 +57,20 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
+        public async Task<IActionResult> Create([Bind("Kid,Byid,Navn,Tlf,Mail")] Kunde kunde, [Bind("Vejnavn, Husnummer")]Adresse A, [Bind("Navn, Byid")] Bynavn b)
         {
             if (ModelState.IsValid)
             {
+                A.Byid = b.Byid;
+                //_context.Add(b);
+                _context.Add(A);
                 _context.Add(kunde);
+                
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
+            ViewData["Navn"] = new SelectList(_context.Set<Bynavn>(), "Navn", "Navn", b.Navn);
             return View(kunde);
         }
 
@@ -89,7 +87,7 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            PopulateAdresseDropDownList();
+            ViewData["Aid"] = new SelectList(_context.Set<Adresse>(), "AID", "AID", kunde.Aid);
             return View(kunde);
         }
 
