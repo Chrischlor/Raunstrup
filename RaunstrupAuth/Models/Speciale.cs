@@ -8,7 +8,7 @@ namespace RaunstrupAuth.Models
     {
         [Key]
         public int Spid { get; set; }
-        public string Speciale1 { get; set; }
+        public string SpecialeNavn { get; set; }
         public ICollection<Medarbejder> Medarbejder { get; set; }
     }
 }
