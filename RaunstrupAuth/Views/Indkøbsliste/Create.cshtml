@@ -13,7 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Tid" class="control-label"></label>
+                <label asp-for="Tid" class="control-label">Tilbud Id</label>
                 <select asp-for="Tid" class ="form-control" asp-items="ViewBag.Tid"></select>
             </div>
             <div class="form-group">
@@ -26,7 +26,7 @@
                 <span asp-validation-for="Antal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rid" class="control-label"></label>
+                <label asp-for="Rid" class="control-label">Rabat</label>
                 <select asp-for="Rid" class ="form-control" asp-items="ViewBag.Rid"></select>
             </div>
             <div class="form-group">
