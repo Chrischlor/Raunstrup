@@ -9,6 +9,7 @@ namespace RaunstrupAuth.Models
         [Key]
         public int Pid { get; set; }
         public int? Tid { get; set; }
+        public int? Mid { get; set; }
         public Medarbejder Projektleder { get; set; }
 
         public Tilbud T { get; set; }
