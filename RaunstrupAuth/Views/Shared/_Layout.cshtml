@@ -80,6 +80,9 @@
                 }
             }
         }
+        function myFunction2() {
+            document.getElementById("myDropdown2").classList.toggle("show");
+        }
     </script>
 
 </head>
@@ -109,8 +112,8 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Data</button>
-                        <div id="myDropdown" class="dropdown-content">
+                        <button onclick="myFunction2()" class="dropbtn">Data</button>
+                        <div id="myDropdown2" class="dropdown-content">
                             <a asp-area="" asp-controller="Bynavn" asp-action="Index">Byer</a>
                             <a asp-area="" asp-controller="Speciales" asp-action="Index">Specialer</a>
                             <a asp-area="" asp-controller="Materialer" asp-action="Index">Materialer</a>
