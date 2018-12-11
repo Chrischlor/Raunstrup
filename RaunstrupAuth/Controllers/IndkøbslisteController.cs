@@ -50,9 +50,9 @@ namespace RaunstrupAuth.Controllers
         // GET: Indkøbsliste/Create
         public IActionResult Create()
         {
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid");
+            PopulateMaterialerDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid");
-            ViewData["Varenummer"] = new SelectList(_context.Materialer, "Varenummer", "Varenummer");
             return View();
         }
 
@@ -69,9 +69,9 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", indkøbsliste.Rid);
+            PopulateMaterialerDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", indkøbsliste.Tid);
-            ViewData["Varenummer"] = new SelectList(_context.Materialer, "Varenummer", "Varenummer", indkøbsliste.Varenummer);
             return View(indkøbsliste);
         }
 
@@ -88,9 +88,9 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", indkøbsliste.Rid);
+            PopulateMaterialerDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", indkøbsliste.Tid);
-            ViewData["Varenummer"] = new SelectList(_context.Materialer, "Varenummer", "Varenummer", indkøbsliste.Varenummer);
             return View(indkøbsliste);
         }
 
@@ -126,9 +126,9 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", indkøbsliste.Rid);
+            PopulateMaterialerDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", indkøbsliste.Tid);
-            ViewData["Varenummer"] = new SelectList(_context.Materialer, "Varenummer", "Varenummer", indkøbsliste.Varenummer);
             return View(indkøbsliste);
         }
 
@@ -167,6 +167,22 @@ namespace RaunstrupAuth.Controllers
         private bool IndkøbslisteExists(int id)
         {
             return _context.Indkøbsliste.Any(e => e.Iid == id);
+        }
+
+        private void PopulateRabatDropDownList(object selectedRabat = null)
+        {
+            var RabatQuery = from d in _context.Rabat
+                             orderby d.rabat
+                             select d;
+            ViewBag.Rid = new SelectList(RabatQuery.AsNoTracking(), "Rid", "rabat", selectedRabat);
+        }
+
+        private void PopulateMaterialerDropDownList(object selectedMaterialer = null)
+        {
+            var MaterialeQuery = from d in _context.Materialer
+                             orderby d.Navn
+                             select d;
+            ViewBag.Varenummer = new SelectList(MaterialeQuery.AsNoTracking(), "Varenummer", "Navn", selectedMaterialer);
         }
     }
 }

@@ -50,8 +50,8 @@ namespace RaunstrupAuth.Controllers
         // GET: Medarbejderlistes/Create
         public IActionResult Create()
         {
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid");
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid");
+            PopulateMedarbejderDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid");
             return View();
         }
@@ -69,8 +69,8 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", medarbejderliste.Mid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", medarbejderliste.Rid);
+            PopulateMedarbejderDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", medarbejderliste.Tid);
             return View(medarbejderliste);
         }
@@ -88,8 +88,8 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", medarbejderliste.Mid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", medarbejderliste.Rid);
+            PopulateMedarbejderDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", medarbejderliste.Tid);
             return View(medarbejderliste);
         }
@@ -126,8 +126,8 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", medarbejderliste.Mid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", medarbejderliste.Rid);
+            PopulateMedarbejderDropDownList();
+            PopulateRabatDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", medarbejderliste.Tid);
             return View(medarbejderliste);
         }
@@ -167,6 +167,23 @@ namespace RaunstrupAuth.Controllers
         private bool MedarbejderlisteExists(int id)
         {
             return _context.Medarbejderliste.Any(e => e.Mlid == id);
+        }
+        
+        private void PopulateMedarbejderDropDownList(object selectedMedarbejder = null)
+        {
+            var MedarbejderQuery = from d in _context.Medarbejder
+                             orderby d.Navn
+                             select d;
+            ViewBag.Mid = new SelectList(MedarbejderQuery.AsNoTracking(), "Mid", "Navn", selectedMedarbejder);
+        }
+
+
+        private void PopulateRabatDropDownList(object selectedRabat = null)
+        {
+            var RabatQuery = from d in _context.Rabat
+                             orderby d.rabat
+                             select d;
+            ViewBag.Rid = new SelectList(RabatQuery.AsNoTracking(), "Rid", "rabat", selectedRabat);
         }
     }
 }
