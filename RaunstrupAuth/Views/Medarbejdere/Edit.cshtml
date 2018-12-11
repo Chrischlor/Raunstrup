@@ -19,7 +19,7 @@
                 <span asp-validation-for="Navn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Aid" class="control-label"></label>
+                <label asp-for="Aid" class="control-label">Adresse</label>
                 <select asp-for="Aid" class="form-control" asp-items="ViewBag.Aid"></select>
                 <span asp-validation-for="Aid" class="text-danger"></span>
             </div>
@@ -29,17 +29,20 @@
                 <span asp-validation-for="Tlf" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Udd" class="control-label"></label>
+                <label asp-for="Udd" class="control-label">Uddannelse</label>
                 <input asp-for="Udd" class="form-control" />
                 <span asp-validation-for="Udd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fudd" class="control-label"></label>
-                <input asp-for="Fudd" class="form-control" />
+                <label asp-for="Fudd" class="control-label">Færdiguddannet</label>
+                <select asp-for="Fudd" class="form-control">
+                    <option value="True">Ja</option>
+                    <option value="False">Nej</option>
+                </select>
                 <span asp-validation-for="Fudd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Spid" class="control-label"></label>
+                <label asp-for="Spid" class="control-label">Speciale Id</label>
                 <select asp-for="Spid" class="form-control" asp-items="ViewBag.Spid"></select>
                 <span asp-validation-for="Spid" class="text-danger"></span>
             </div>
