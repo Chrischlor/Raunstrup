@@ -15,6 +15,73 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    @*taget fra https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown*@
+    <style>
+        .dropbtn {
+            background-color: #222;
+            color: #9d9d9d;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+            .dropbtn:hover, .dropbtn:focus {
+                background-color: #2980B9;
+            }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -31,19 +98,33 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Kunde" asp-action="Index">Kundeoversigt</a></li>
-                    <li><a asp-area="" asp-controller="Medarbejdere" asp-action="Index">Medarbejdere</a></li>
                     <li><a asp-area="" asp-controller="Medarbejderlistes" asp-action="Index">Medarbejder Lister</a></li>
                     <li><a asp-area="" asp-controller="Indkøbsliste" asp-action="Index">Indkøb</a></li>
-                    <li><a asp-area="" asp-controller="Materialer" asp-action="Index">Materialer</a></li>
-                    <li><a asp-area="" asp-controller="Speciales" asp-action="Index">Specialer</a></li>
-                    <li><a asp-area="" asp-controller="Adresse" asp-action="Index">Adresser</a></li>
-                    <li><a asp-area="" asp-controller="Bynavn" asp-action="Index">Byer</a></li>
-                    <li><a asp-area="" asp-controller="Rabats" asp-action="Index">Rabat</a></li>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">HR</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a asp-area="" asp-controller="Medarbejdere" asp-action="Index">Medarbejdere</a>
+                            <a asp-area="" asp-controller="Kunde" asp-action="Index">Kundeoversigt</a>
+                            <a asp-area="" asp-controller="Adresse" asp-action="Index">Adresser</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Data</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a asp-area="" asp-controller="Bynavn" asp-action="Index">Byer</a>
+                            <a asp-area="" asp-controller="Speciales" asp-action="Index">Specialer</a>
+                            <a asp-area="" asp-controller="Materialer" asp-action="Index">Materialer</a>
+                            <a asp-area="" asp-controller="Rabats" asp-action="Index">Rabat</a>
+                        </div>
+                    </div>
+                </ul>
+
+                <partial name="_LoginPartial" />
+                <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
-                <partial name="_LoginPartial" />
+                
             </div>
         </div>
     </nav>
