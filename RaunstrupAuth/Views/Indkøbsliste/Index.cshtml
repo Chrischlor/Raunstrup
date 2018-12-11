@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RaunstrupAuth.Models.Indkøbsliste>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Antal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.R)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.T)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VarenummerNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Antal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.R.Rid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.T.Tid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VarenummerNavigation.Varenummer)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Iid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Iid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Iid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
