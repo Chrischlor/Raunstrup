@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Kunde Id
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Navn)
             </th>
             <th>
@@ -23,7 +26,7 @@
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.A)*@
-                Adresse 
+                Adresse Id
             </th>
             <th></th>
         </tr>
@@ -31,6 +34,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kid)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Navn)
             </td>
