@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Medarbejder Id
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Navn)
             </th>
             <th>
@@ -25,10 +28,10 @@
                 @Html.DisplayNameFor(model => model.Fudd)
             </th>
             <th>
-                Adresse
+                Adresse Id
             </th>
             <th>
-                Speciale
+                Speciale Id
             </th>
             <th></th>
         </tr>
@@ -36,6 +39,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mid)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Navn)
             </td>
