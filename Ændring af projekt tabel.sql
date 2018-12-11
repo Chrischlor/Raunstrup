@@ -1,0 +1,4 @@
+﻿ALTER TABLE dbo.Projekt DROP COLUMN Mid
+
+ALTER TABLE dbo.Projekt 
+ADD Mid INT FOREIGN KEY REFERENCES dbo.Medarbejder(Mid)
