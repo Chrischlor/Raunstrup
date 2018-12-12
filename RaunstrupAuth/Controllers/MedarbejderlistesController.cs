@@ -25,6 +25,17 @@ namespace RaunstrupAuth.Controllers
             var applicationDbContext = _context.Medarbejderliste.Include(m => m.M).Include(m => m.R).Include(m => m.T);
             return View(await applicationDbContext.ToListAsync());
         }
+        [HttpPost]
+        public ActionResult Index(int searchNumber)
+        {
+            var liste = from m in _context.Medarbejderliste.Include(m => m.M).Include(m => m.R).Include(m => m.T) select m;
+
+            if (searchNumber > 0)
+            {
+                liste = liste.Where(i => i.Tid == searchNumber);
+            }
+            return View(liste);
+        }
 
         // GET: Medarbejderlistes/Details/5
         public async Task<IActionResult> Details(int? id)

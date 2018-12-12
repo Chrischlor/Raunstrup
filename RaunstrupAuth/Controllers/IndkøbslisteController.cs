@@ -20,10 +20,22 @@ namespace RaunstrupAuth.Controllers
         }
 
         // GET: Indkøbsliste
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Indkøbsliste.Include(i => i.R).Include(i => i.T).Include(i => i.VarenummerNavigation);
             return View(await applicationDbContext.ToListAsync());
+        }
+        [HttpPost]
+        public ActionResult Index (int searchNumber)
+        {
+            var liste = from m in _context.Indkøbsliste.Include( i => i.R).Include(i => i.T).Include(i => i.VarenummerNavigation) select m;
+            
+            if (searchNumber > 0)
+            {
+                liste = liste.Where(i => i.Tid == searchNumber);
+            }
+            return View(liste);
         }
 
         // GET: Indkøbsliste/Details/5

@@ -9,6 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Indkøbsliste" method="post">
+    <p>
+        Indtast tilbuds ID <input type="number" name="searchNumber" />
+        <input type="submit" value="Søg" />
+    </p>
+
+</form>
+
 <table class="table">
     <thead>
         <tr>
