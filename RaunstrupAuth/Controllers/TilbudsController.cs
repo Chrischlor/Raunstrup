@@ -49,8 +49,8 @@ namespace RaunstrupAuth.Controllers
         // GET: Tilbuds/Create
         public IActionResult Create()
         {
-            ViewData["Kid"] = new SelectList(_context.Kunde, "Kid", "Kid");
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid");
+            PopulateKundeDropDownList();
+            PopulateRabatDropDownList();
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Kid"] = new SelectList(_context.Kunde, "Kid", "Kid", tilbud.Kid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", tilbud.Rid);
+            PopulateKundeDropDownList();
+            PopulateRabatDropDownList();
             return View(tilbud);
         }
 
@@ -85,8 +85,8 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Kid"] = new SelectList(_context.Kunde, "Kid", "Kid", tilbud.Kid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", tilbud.Rid);
+            PopulateKundeDropDownList();
+            PopulateRabatDropDownList();
             return View(tilbud);
         }
 
@@ -122,8 +122,8 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Kid"] = new SelectList(_context.Kunde, "Kid", "Kid", tilbud.Kid);
-            ViewData["Rid"] = new SelectList(_context.Rabat, "Rid", "Rid", tilbud.Rid);
+            PopulateKundeDropDownList();
+            PopulateRabatDropDownList();
             return View(tilbud);
         }
 
@@ -161,6 +161,20 @@ namespace RaunstrupAuth.Controllers
         private bool TilbudExists(int id)
         {
             return _context.Tilbud.Any(e => e.Tid == id);
+        }
+        private void PopulateRabatDropDownList(object selectedRabat = null)
+        {
+            var RabatQuery = from d in _context.Rabat
+                             orderby d.rabat
+                             select d;
+            ViewBag.Rid = new SelectList(RabatQuery.AsNoTracking(), "Rid", "rabat", selectedRabat);
+        }
+        private void PopulateKundeDropDownList(object selectedKunde = null)
+        {
+            var RabatQuery = from d in _context.Kunde
+                             orderby d.Navn
+                             select d;
+            ViewBag.Kid = new SelectList(RabatQuery.AsNoTracking(), "Kid", "Navn", selectedKunde);
         }
     }
 }

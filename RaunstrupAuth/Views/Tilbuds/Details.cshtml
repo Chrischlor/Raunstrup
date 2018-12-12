@@ -29,16 +29,22 @@
             @Html.DisplayFor(model => model.Deadline)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.K)
+            Kunde id
         </dt>
         <dd>
             @Html.DisplayFor(model => model.K.Kid)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.R)
+            Kunde
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.R.Rid)
+            @Html.DisplayFor(model => model.K.Navn)
+        </dd>
+        <dt>
+            Rabat
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.R.rabat)
         </dd>
     </dl>
 </div>

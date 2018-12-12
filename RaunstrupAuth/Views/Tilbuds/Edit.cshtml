@@ -14,17 +14,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Tid" />
             <div class="form-group">
-                <label asp-for="Projekttitle" class="control-label"></label>
+                <label asp-for="Projekttitle" class="control-label">Projekt titel</label>
                 <input asp-for="Projekttitle" class="form-control" />
                 <span asp-validation-for="Projekttitle" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rid" class="control-label"></label>
+                <label asp-for="Rid" class="control-label">Rabat</label>
                 <select asp-for="Rid" class="form-control" asp-items="ViewBag.Rid"></select>
                 <span asp-validation-for="Rid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Kid" class="control-label"></label>
+                <label asp-for="Kid" class="control-label">Kunde</label>
                 <select asp-for="Kid" class="form-control" asp-items="ViewBag.Kid"></select>
                 <span asp-validation-for="Kid" class="text-danger"></span>
             </div>
