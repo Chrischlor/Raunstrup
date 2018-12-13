@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using RaunstrupAuth.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 
 namespace RaunstrupAuth
 {
@@ -38,6 +40,7 @@ namespace RaunstrupAuth
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
