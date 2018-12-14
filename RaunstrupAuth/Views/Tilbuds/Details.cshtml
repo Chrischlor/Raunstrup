@@ -1,5 +1,4 @@
 ﻿@model RaunstrupAuth.Models.Tilbud
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -10,6 +9,12 @@
     <h4>Tilbud</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            Tilbud Id
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tid)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Projekttitle)
         </dt>

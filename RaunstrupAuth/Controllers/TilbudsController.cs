@@ -37,6 +37,8 @@ namespace RaunstrupAuth.Controllers
             var tilbud = await _context.Tilbud
                 .Include(t => t.K)
                 .Include(t => t.R)
+                .Include(t => t.Medarbejderliste)
+                .Include(t => t.Indkøbsliste)
                 .FirstOrDefaultAsync(m => m.Tid == id);
             if (tilbud == null)
             {
