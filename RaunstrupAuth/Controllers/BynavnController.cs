@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class BynavnController : Controller
     {
+        //opsætning af context
         private readonly ApplicationDbContext _context;
 
         public BynavnController(ApplicationDbContext context)

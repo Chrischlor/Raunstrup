@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class TilbudsController : Controller
     {
+        //Opsætter context
         private readonly ApplicationDbContext _context;
 
         public TilbudsController(ApplicationDbContext context)
@@ -162,6 +163,7 @@ namespace RaunstrupAuth.Controllers
         {
             return _context.Tilbud.Any(e => e.Tid == id);
         }
+        //Udfylder rabat dropdown på /create og på /edit/?
         private void PopulateRabatDropDownList(object selectedRabat = null)
         {
             var RabatQuery = from d in _context.Rabat
@@ -169,6 +171,7 @@ namespace RaunstrupAuth.Controllers
                              select d;
             ViewBag.Rid = new SelectList(RabatQuery.AsNoTracking(), "Rid", "rabat", selectedRabat);
         }
+        //Udfylder kunde dropdown på /create og på /edit/?
         private void PopulateKundeDropDownList(object selectedKunde = null)
         {
             var RabatQuery = from d in _context.Kunde

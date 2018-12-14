@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class AdresseController : Controller
     {
+        //opsætning af context
         private readonly ApplicationDbContext _context;
         
         public AdresseController(ApplicationDbContext context)
@@ -44,6 +45,7 @@ namespace RaunstrupAuth.Controllers
 
             return View(adresse);
         }
+        //Udfyldning af dropdown på view
         private void PopulateBynavnDropDownList(object selectedBy = null)
         {
             var ByQuery = from d in _context.Bynavn
