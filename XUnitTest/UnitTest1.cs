@@ -1,14 +1,23 @@
 using System;
+using RaunstrupAuth.Controllers;
 using Xunit;
 
 namespace XUnitTest
 {
-    public class UnitTest1
+    public class UnitTest
     {
         [Fact]
-        public void Test1()
+        public void AltOverNul()
+        {
+            var kundeController = new KundeController();
+
+        }
+        [Fact]
+        public void DatoStartSlut()
         {
 
         }
+
+
     }
 }
