@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class ProjektsController : Controller
     {
+        //opsætter context
         private readonly ApplicationDbContext _context;
 
         public ProjektsController(ApplicationDbContext context)

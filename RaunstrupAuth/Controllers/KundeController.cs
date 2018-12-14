@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class KundeController : Controller
     {
+        //opsætning af context
         private readonly ApplicationDbContext _context;
 
         public KundeController(ApplicationDbContext context)
@@ -157,6 +158,7 @@ namespace RaunstrupAuth.Controllers
         {
             return _context.Kunde.Any(e => e.Kid == id);
         }
+        //udfylder dropdown på /create og på /edit/?
         private void PopulateAdresseDropDownList(object selectedKunde = null)
         {
             var kundeQuery = from d in _context.Adresse

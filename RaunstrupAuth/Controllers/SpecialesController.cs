@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class SpecialesController : Controller
     {
+        //Opsætter context
         private readonly ApplicationDbContext _context;
 
         public SpecialesController(ApplicationDbContext context)
