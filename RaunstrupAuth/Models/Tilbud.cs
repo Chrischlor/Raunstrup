@@ -25,5 +25,7 @@ namespace RaunstrupAuth.Models
         public ICollection<Indkøbsliste> Indkøbsliste { get; set; }
         public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
         public ICollection<Projekt> Projekt { get; set; }
+
+
     }
 }

@@ -44,20 +44,9 @@
             Adresse 
         </dt>
         <dd>
-            <table class="table">
-                <tr>
-                    <th>Vejnavn</th>
-                    <th>Husnummer</th>
-                </tr>
-
-                <tr>
-                    <td>@Html.DisplayFor(model => model.A.Vejnavn)</td>
-                    <td>@Html.DisplayFor(mode => Model.A.Husnummer)</td>
-                </tr>
-
-                
-            </table>
+            @Html.DisplayFor(model => model.A.Vejnavn) @Html.DisplayFor(mode => Model.A.Husnummer)
         </dd>
+
     </dl>
 </div>
 <div>
