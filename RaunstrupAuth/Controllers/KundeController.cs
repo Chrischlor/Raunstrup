@@ -66,7 +66,7 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
+            PopulateAdresseDropDownList();
             return View(kunde);
         }
 
@@ -119,7 +119,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Set<Adresse>(), "AID", "AID", kunde.Aid);
+            PopulateAdresseDropDownList();
             return View(kunde);
         }
 
@@ -164,5 +164,6 @@ namespace RaunstrupAuth.Controllers
                              select d;
             ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedKunde);
         }
+
     }
 }

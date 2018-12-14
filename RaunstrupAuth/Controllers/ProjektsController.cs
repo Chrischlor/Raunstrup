@@ -49,7 +49,7 @@ namespace RaunstrupAuth.Controllers
         // GET: Projekts/Create
         public IActionResult Create()
         {
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid");
+            PopulateMedarbejderDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid");
             return View();
         }
@@ -67,7 +67,7 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", projekt.Mid);
+            PopulateMedarbejderDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", projekt.Tid);
             return View(projekt);
         }
@@ -85,7 +85,7 @@ namespace RaunstrupAuth.Controllers
             {
                 return NotFound();
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", projekt.Mid);
+            PopulateMedarbejderDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", projekt.Tid);
             return View(projekt);
         }
@@ -122,7 +122,7 @@ namespace RaunstrupAuth.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Mid"] = new SelectList(_context.Medarbejder, "Mid", "Mid", projekt.Mid);
+            PopulateMedarbejderDropDownList();
             ViewData["Tid"] = new SelectList(_context.Tilbud, "Tid", "Tid", projekt.Tid);
             return View(projekt);
         }
@@ -161,6 +161,14 @@ namespace RaunstrupAuth.Controllers
         private bool ProjektExists(int id)
         {
             return _context.Projekt.Any(e => e.Pid == id);
+        }
+
+        private void PopulateMedarbejderDropDownList(object selectedMedarbejder = null)
+        {
+            var MedarbejderQuery = from d in _context.Medarbejder
+                                   orderby d.Navn
+                                   select d;
+            ViewBag.Mid = new SelectList(MedarbejderQuery.AsNoTracking(), "Mid", "Navn", selectedMedarbejder);
         }
     }
 }
