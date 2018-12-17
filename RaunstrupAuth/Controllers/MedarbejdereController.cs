@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RaunstrupAuth.Data;
 using RaunstrupAuth.Models;
+using System.IO;
 
 namespace RaunstrupAuth.Controllers
 {

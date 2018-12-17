@@ -14,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using System.Runtime.Loader;
+using System.IO;
+using System.Reflection;
 
 namespace RaunstrupAuth
 {
@@ -25,6 +28,9 @@ namespace RaunstrupAuth
         }
 
         public IConfiguration Configuration { get; }
+
+       
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,8 +44,10 @@ namespace RaunstrupAuth
 
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+           
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
         }
 
