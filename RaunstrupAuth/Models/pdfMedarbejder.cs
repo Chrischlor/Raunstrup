@@ -21,9 +21,6 @@ namespace RaunstrupAuth.Models
             //Her bliver der skabt en liste af typen medarbejder
             var medarbejder = context.Medarbejder.ToList();
             
-
-
-
             //Stringbuilder klassen bliver initialiseret, hvor datatabellen bliver kreeret ved hjælp af stringbuilder objektet.
             var sb = new StringBuilder();
             sb.Append(@"
