@@ -12,6 +12,7 @@ namespace RaunstrupAuth.Controllers
 {
     public class IndkøbslisteController : Controller
     {
+        //opsætning af context
         private readonly ApplicationDbContext _context;
 
         public IndkøbslisteController(ApplicationDbContext context)
@@ -26,6 +27,7 @@ namespace RaunstrupAuth.Controllers
             var applicationDbContext = _context.Indkøbsliste.Include(i => i.R).Include(i => i.T).Include(i => i.VarenummerNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
+        //Indexering af indkøb til search
         [HttpPost]
         public ActionResult Index (int searchNumber)
         {
@@ -181,6 +183,7 @@ namespace RaunstrupAuth.Controllers
             return _context.Indkøbsliste.Any(e => e.Iid == id);
         }
 
+        //Udfylning af rabat liste på /create og på /edit/?
         private void PopulateRabatDropDownList(object selectedRabat = null)
         {
             var RabatQuery = from d in _context.Rabat
@@ -188,7 +191,7 @@ namespace RaunstrupAuth.Controllers
                              select d;
             ViewBag.Rid = new SelectList(RabatQuery.AsNoTracking(), "Rid", "rabat", selectedRabat);
         }
-
+        //Udfyldning af varenummer liste på /create og på /edit/?
         private void PopulateMaterialerDropDownList(object selectedMaterialer = null)
         {
             var MaterialeQuery = from d in _context.Materialer

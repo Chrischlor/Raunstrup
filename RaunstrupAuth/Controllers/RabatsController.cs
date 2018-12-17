@@ -12,6 +12,8 @@ namespace RaunstrupAuth.Controllers
 {
     public class RabatsController : Controller
     {
+
+        //opsætter context
         private readonly ApplicationDbContext _context;
 
         public RabatsController(ApplicationDbContext context)

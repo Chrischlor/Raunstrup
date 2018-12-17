@@ -9,6 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Projektleder)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.T)
+                Tilbud Id
             </th>
             <th></th>
         </tr>
@@ -25,7 +26,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Projektleder.Mid)
+                @Html.DisplayFor(modelItem => item.Projektleder.Navn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.T.Tid)

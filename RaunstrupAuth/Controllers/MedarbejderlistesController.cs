@@ -179,7 +179,8 @@ namespace RaunstrupAuth.Controllers
         {
             return _context.Medarbejderliste.Any(e => e.Mlid == id);
         }
-        
+
+        //Udfylder medarbejder dropdown på /create og på /edit/?
         private void PopulateMedarbejderDropDownList(object selectedMedarbejder = null)
         {
             var MedarbejderQuery = from d in _context.Medarbejder
@@ -188,7 +189,7 @@ namespace RaunstrupAuth.Controllers
             ViewBag.Mid = new SelectList(MedarbejderQuery.AsNoTracking(), "Mid", "Navn", selectedMedarbejder);
         }
 
-
+        //udfylder rabat dropdown på /create og på /edit/?
         private void PopulateRabatDropDownList(object selectedRabat = null)
         {
             var RabatQuery = from d in _context.Rabat
