@@ -14,25 +14,30 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Mlid" />
             <div class="form-group">
+                @* det her er hvor vi har en viewbag som man kan vælge et tilhørende tilbud *@
                 <label asp-for="Tid" class="control-label"></label>
                 <select asp-for="Tid" class="form-control" asp-items="ViewBag.Tid"></select>
                 <span asp-validation-for="Tid" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge medarbejder ved navn *@
             <div class="form-group">
                 <label asp-for="Mid" class="control-label">Medarbejder</label>
                 <select asp-for="Mid" class="form-control" asp-items="ViewBag.Mid"></select>
                 <span asp-validation-for="Mid" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Timer" class="control-label"></label>
                 <input asp-for="Timer" class="form-control" />
                 <span asp-validation-for="Timer" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge rabat istedet for den id *@
             <div class="form-group">
                 <label asp-for="Rid" class="control-label">Rabat</label>
                 <select asp-for="Rid" class="form-control" asp-items="ViewBag.Rid"></select>
                 <span asp-validation-for="Rid" class="text-danger"></span>
             </div>
+            @* En knap som submiter denne form data til controlleren *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

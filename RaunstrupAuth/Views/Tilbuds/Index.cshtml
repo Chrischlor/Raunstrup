@@ -9,6 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@* laver en tabel med data fra flere tabeler og bruger en foreach til at delle alt dataen ud i viewet *@
 <table class="table">
     <thead>
         <tr>
@@ -34,32 +36,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Projekttitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Startdato)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deadline)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.K.Kid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.R.Rid)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Tid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Tid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Tid">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projekttitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Startdato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.K.Kid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R.Rid)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Tid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Tid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Tid">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
