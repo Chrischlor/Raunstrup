@@ -20,4 +20,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\css\styles.css">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
