@@ -17,6 +17,7 @@
 
 </form>
 
+@* laver en tabel med data fra flere tabeler og bruger en foreach til at delle alt dataen ud i viewet *@
 <table class="table">
     <thead>
         <tr>
@@ -36,26 +37,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.T.Tid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VarenummerNavigation.Varenummer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.R.rabat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Antal)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Iid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Iid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Iid">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.T.Tid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarenummerNavigation.Varenummer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.R.rabat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Antal)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Iid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Iid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Iid">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -12,27 +12,32 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <input type="hidden" asp-for="Mid" />
             <div class="form-group">
                 <label asp-for="Navn" class="control-label"></label>
                 <input asp-for="Navn" class="form-control" />
                 <span asp-validation-for="Navn" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge adresse ved navn *@
             <div class="form-group">
                 <label asp-for="Aid" class="control-label">Adresse</label>
                 <select asp-for="Aid" class="form-control" asp-items="ViewBag.Aid"></select>
                 <span asp-validation-for="Aid" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Tlf" class="control-label"></label>
                 <input asp-for="Tlf" class="form-control" />
                 <span asp-validation-for="Tlf" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Udd" class="control-label">Uddannelse</label>
                 <input asp-for="Udd" class="form-control" />
                 <span asp-validation-for="Udd" class="text-danger"></span>
             </div>
+            @* bare et combo felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Fudd" class="control-label">Færdiguddannet</label>
                 <select asp-for="Fudd" class="form-control">
@@ -41,11 +46,13 @@
                 </select>
                 <span asp-validation-for="Fudd" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge speciale ved navn *@
             <div class="form-group">
                 <label asp-for="Spid" class="control-label">Speciale Id</label>
                 <select asp-for="Spid" class="form-control" asp-items="ViewBag.Spid"></select>
                 <span asp-validation-for="Spid" class="text-danger"></span>
             </div>
+            @* En knap som submiter denne form data til controlleren *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

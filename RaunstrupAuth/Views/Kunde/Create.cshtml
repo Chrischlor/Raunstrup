@@ -11,12 +11,14 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Navn" class="control-label"></label>
                 <input asp-for="Navn" class="form-control" />
                 <span asp-validation-for="Navn" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge adresse ved navn *@
             <div class="form-group">
                 <label asp-for="A" class="control-label">Adresse</label>
                 <select asp-for="Aid" class="form-control" asp-items="ViewBag.Aid">
@@ -24,11 +26,13 @@
                 </select>
                 <span asp-validation-for="Aid" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Tlf" class="control-label"></label>
                 <input asp-for="Tlf" class="form-control" />
                 <span asp-validation-for="Tlf" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Mail" class="control-label"></label>
                 <input asp-for="Mail" class="form-control" />

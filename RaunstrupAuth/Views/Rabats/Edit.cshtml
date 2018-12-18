@@ -11,6 +11,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Rid" />
             <div class="form-group">
@@ -18,6 +19,7 @@
                 <input asp-for="rabat" class="form-control" />
                 <span asp-validation-for="rabat" class="text-danger"></span>
             </div>
+            @* En knap som submiter denne form data til controlleren *@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
