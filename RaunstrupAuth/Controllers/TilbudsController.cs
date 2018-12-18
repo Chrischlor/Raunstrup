@@ -12,7 +12,7 @@ using RaunstrupAuth.Models;
 namespace RaunstrupAuth.Controllers
 {
     
-    [Authorize]
+    
     public class TilbudsController : Controller
     {
         //Opsætter context
@@ -38,7 +38,6 @@ namespace RaunstrupAuth.Controllers
                 return NotFound();
             }
 
-            // vilke modeler der kan bruges i detail viewet
             var tilbud = await _context.Tilbud
                 .Include(t => t.K)
                 .Include(t => t.R)
