@@ -9,6 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+@* laver en tabel med data fra flere tabeler og bruger en foreach til at delle alt dataen ud i viewet *@
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +21,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpecialeNavn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Spid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Spid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Spid">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialeNavn)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Spid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Spid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Spid">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -11,30 +11,36 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Projekttitle" class="control-label">Projekt titel</label>
                 <input asp-for="Projekttitle" class="form-control" />
                 <span asp-validation-for="Projekttitle" class="text-danger"></span>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge rabat istedet for den id *@
             <div class="form-group">
                 <label asp-for="Rid" class="control-label">Rabat</label>
-                <select asp-for="Rid" class ="form-control" asp-items="ViewBag.Rid"></select>
+                <select asp-for="Rid" class="form-control" asp-items="ViewBag.Rid"></select>
             </div>
+            @* det her er hvor vi kalder den viewbag som er metoden der er lavet i controlleren som gør vi kan vælge kunde ved navn *@
             <div class="form-group">
                 <label asp-for="Kid" class="control-label">Kunde</label>
-                <select asp-for="Kid" class ="form-control" asp-items="ViewBag.Kid"></select>
+                <select asp-for="Kid" class="form-control" asp-items="ViewBag.Kid"></select>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Startdato" class="control-label"></label>
                 <input asp-for="Startdato" class="form-control" />
                 <span asp-validation-for="Startdato" class="text-danger"></span>
             </div>
+            @* bare et input felt som kan tage værdien or sende til controleren *@
             <div class="form-group">
                 <label asp-for="Deadline" class="control-label"></label>
                 <input asp-for="Deadline" class="form-control" />
                 <span asp-validation-for="Deadline" class="text-danger"></span>
             </div>
+            @* En knap som submiter denne form data til controlleren *@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

@@ -9,12 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+ @* En søgebar som søger på tilbud *@
 <form asp-controller="medarbejderlistes" method="post">
     <p>
         Indtast tilbuds ID <input type="number" name="searchNumber" />
         <input type="submit" value="Søg" />
     </p>
 
+ @* laver en tabel med data fra flere tabeler og bruger en foreach til at delle alt dataen ud i viewet *@
 </form>
 <table class="table">
     <thead>
