@@ -9,9 +9,11 @@ using RaunstrupAuth.Models;
 using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RaunstrupAuth.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         
