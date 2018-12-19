@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,8 @@ using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Controllers
 {
+    
+    
     public class TilbudsController : Controller
     {
         //Opsætter context
@@ -35,7 +38,6 @@ namespace RaunstrupAuth.Controllers
                 return NotFound();
             }
 
-            // vilke modeler der kan bruges i detail viewet
             var tilbud = await _context.Tilbud
                 .Include(t => t.K)
                 .Include(t => t.R)

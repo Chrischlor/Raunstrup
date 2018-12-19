@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Models
 {
@@ -17,7 +20,9 @@ namespace RaunstrupAuth.Models
         public string Projekttitle { get; set; }
         public int Rid { get; set; }
         public int Kid { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Startdato { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Deadline { get; set; }
 
         public Kunde K { get; set; }
@@ -26,6 +31,10 @@ namespace RaunstrupAuth.Models
         public ICollection<Medarbejderliste> Medarbejderliste { get; set; }
         public ICollection<Projekt> Projekt { get; set; }
 
+        //public int totalMat(Tilbud T)
+        //{
+        //    int totalpis = Indkøbsliste.pris();
+        //}
 
     }
 }
