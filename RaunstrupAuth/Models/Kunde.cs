@@ -16,6 +16,7 @@ namespace RaunstrupAuth.Models
         public string Navn { get; set; }
         public int? Aid { get; set; }
         public int? Tlf { get; set; }
+        [EmailAddress]
         public string Mail { get; set; }
 
         public Adresse A { get; set; }

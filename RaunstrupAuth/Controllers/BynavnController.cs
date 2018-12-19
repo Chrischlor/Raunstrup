@@ -57,7 +57,7 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ByID,Postnummer,Navn")] Bynavn bynavn)
+        public async Task<IActionResult> Create([Bind("Byid,Postnummer,Navn")] Bynavn bynavn)
         {
             if (ModelState.IsValid)
             {
