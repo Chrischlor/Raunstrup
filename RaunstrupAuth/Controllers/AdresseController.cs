@@ -102,7 +102,7 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse)
+        public async Task<IActionResult> Edit(int id, [Bind("Aid,Byid,Vejnavn,Husnummer")] Adresse adresse)
         {
             if (id != adresse.Aid)
             {
