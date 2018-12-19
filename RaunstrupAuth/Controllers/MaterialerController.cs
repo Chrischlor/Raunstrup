@@ -28,18 +28,19 @@ namespace RaunstrupAuth.Controllers
         // GET: Materialer/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            
             if (id == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Details),
+                    controllerName: "Materialer");
             }
 
             var materialer = await _context.Materialer
                 .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Details),
+                    controllerName: "Materialer");
             }
 
             return View(materialer);
@@ -72,15 +73,15 @@ namespace RaunstrupAuth.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Edit),
+                    controllerName: "Materialer");
             }
 
             var materialer = await _context.Materialer.FindAsync(id);
             if (materialer == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Edit),
+                    controllerName: "Materialer");
             }
             return View(materialer);
         }
@@ -94,8 +95,8 @@ namespace RaunstrupAuth.Controllers
         {
             if (id != materialer.Varenummer)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Edit),
+                    controllerName: "Materialer");
             }
 
             if (ModelState.IsValid)
@@ -109,8 +110,8 @@ namespace RaunstrupAuth.Controllers
                 {
                     if (!MaterialerExists(materialer.Varenummer))
                     {
-                        return RedirectToAction(actionName: nameof(Index),
-                            controllerName: "Home");
+                        return RedirectToAction(actionName: nameof(Edit),
+                            controllerName: "Materialer");
                     }
                     else
                     {
@@ -127,16 +128,16 @@ namespace RaunstrupAuth.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Delete),
+                    controllerName: "Materialer");
             }
 
             var materialer = await _context.Materialer
                 .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                return RedirectToAction(actionName: nameof(Delete),
+                    controllerName: "Materialer");
             }
 
             return View(materialer);

@@ -28,8 +28,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Bynavn", redirectToActionResult.ControllerName);
+            Assert.Equal("Details", redirectToActionResult.ActionName);
 
 
         }
@@ -43,8 +43,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Bynavn", redirectToActionResult.ControllerName);
+            Assert.Equal("Edit", redirectToActionResult.ActionName);
         }
 
     }
@@ -62,8 +62,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Medarbejder", redirectToActionResult.ControllerName);
+            Assert.Equal("Details", redirectToActionResult.ActionName);
         }
         [Fact]
         public async Task Edit_SkalIndeholde()
@@ -75,8 +75,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Medarbejder", redirectToActionResult.ControllerName);
+            Assert.Equal("Edit", redirectToActionResult.ActionName);
         }
         [Fact]
         public async Task Delete_SkalIndeholde()
@@ -88,8 +88,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Medarbejder", redirectToActionResult.ControllerName);
+            Assert.Equal("Delete", redirectToActionResult.ActionName);
         }
     }
     public class MaterialerControllerTest
@@ -106,8 +106,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Materialer", redirectToActionResult.ControllerName);
+            Assert.Equal("Details", redirectToActionResult.ActionName);
         }
         [Fact]
         public async Task Edit_SkalIndeholde()
@@ -119,8 +119,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Materialer", redirectToActionResult.ControllerName);
+            Assert.Equal("Edit", redirectToActionResult.ActionName);
         }
         [Fact]
         public async Task Delete_SkalIndeholde()
@@ -132,8 +132,8 @@ namespace UnitTest
             // Assert
             var redirectToActionResult =
                 Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Home", redirectToActionResult.ControllerName);
-            Assert.Equal("Index", redirectToActionResult.ActionName);
+            Assert.Equal("Materialer", redirectToActionResult.ControllerName);
+            Assert.Equal("Delete", redirectToActionResult.ActionName);
         }
     }
 }
