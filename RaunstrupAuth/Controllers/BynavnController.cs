@@ -24,27 +24,28 @@ namespace RaunstrupAuth.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Bynavn.ToListAsync());
-        }
+        }       
 
         // GET: Bynavn/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
+            var bynavn = await _context.Bynavn.FirstOrDefaultAsync(m => m.Byid == id);
 
-            var bynavn = await _context.Bynavn
-                .FirstOrDefaultAsync(m => m.Byid == id);
-            if (bynavn == null)
+
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(bynavn);
         }
-
-        // GET: Bynavn/Create
+        
         public IActionResult Create()
         {
             return View();
@@ -63,6 +64,13 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
+            }
+
             return Redirect("/Adresse/Create");
                 //View(bynavn);
         }
@@ -70,15 +78,17 @@ namespace RaunstrupAuth.Controllers
         // GET: Bynavn/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var bynavn = await _context.Bynavn.FindAsync(id);
-            if (bynavn == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             return View(bynavn);
         }
@@ -92,8 +102,10 @@ namespace RaunstrupAuth.Controllers
         {
             if (id != bynavn.Byid)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
+
 
             if (ModelState.IsValid)
             {
@@ -106,7 +118,8 @@ namespace RaunstrupAuth.Controllers
                 {
                     if (!BynavnExists(bynavn.Byid))
                     {
-                        return NotFound();
+                        return RedirectToAction(actionName: nameof(Index),
+                            controllerName: "Home");
                     }
                     else
                     {
@@ -121,16 +134,19 @@ namespace RaunstrupAuth.Controllers
         // GET: Bynavn/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var bynavn = await _context.Bynavn
                 .FirstOrDefaultAsync(m => m.Byid == id);
-            if (bynavn == null)
+
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(bynavn);
@@ -141,6 +157,7 @@ namespace RaunstrupAuth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+           
             var bynavn = await _context.Bynavn.FindAsync(id);
             _context.Bynavn.Remove(bynavn);
             await _context.SaveChangesAsync();
