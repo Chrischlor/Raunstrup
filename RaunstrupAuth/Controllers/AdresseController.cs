@@ -11,8 +11,8 @@ using RaunstrupAuth.Models;
 
 namespace RaunstrupAuth.Controllers
 {
-    [Authorize(Roles ="Medarbejder") ]
-    [Authorize(Roles ="Administrator")]
+    //[Authorize(Roles ="Medarbejder") ]
+    //[Authorize(Roles ="Administrator")]
     public class AdresseController : Controller
     {
         //opsætning af context
@@ -68,16 +68,16 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Kid,Navn,Aid,Tlf,Mail")] Kunde kunde)
+        public async Task<IActionResult> Create([Bind("AID,Byid,Vejnavn,Husnummer")] Adresse adresse)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(kunde);
+                _context.Add(adresse);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", kunde.Aid);
-            return View(kunde);
+            ViewData["Aid"] = new SelectList(_context.Adresse, "Aid", "Aid", adresse.Aid);
+            return View(adresse);
         }
 
         // GET: Adresse/Edit/5

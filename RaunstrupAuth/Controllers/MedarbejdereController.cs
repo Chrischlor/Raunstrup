@@ -30,18 +30,20 @@ namespace RaunstrupAuth.Controllers
         // GET: Medarbejdere/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder
                 .Include(m => m.A)
                 .Include(m => m.Sp)
                 .FirstOrDefaultAsync(m => m.Mid == id);
-            if (medarbejder == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(medarbejder);
@@ -76,15 +78,17 @@ namespace RaunstrupAuth.Controllers
         // GET: Medarbejdere/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder.FindAsync(id);
-            if (medarbejder == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             PopulateAdresseDropDownList();
             PopulateSpecialeDropDownList();
@@ -100,7 +104,8 @@ namespace RaunstrupAuth.Controllers
         {
             if (id != medarbejder.Mid)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             if (ModelState.IsValid)
@@ -114,7 +119,8 @@ namespace RaunstrupAuth.Controllers
                 {
                     if (!MedarbejderExists(medarbejder.Mid))
                     {
-                        return NotFound();
+                        return RedirectToAction(actionName: nameof(Index),
+                            controllerName: "Home");
                     }
                     else
                     {
@@ -131,9 +137,10 @@ namespace RaunstrupAuth.Controllers
         // GET: Medarbejdere/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder
@@ -142,7 +149,9 @@ namespace RaunstrupAuth.Controllers
                 .FirstOrDefaultAsync(m => m.Mid == id);
             if (medarbejder == null)
             {
-                return NotFound();
+                  return RedirectToAction(actionName: nameof(Index),
+                      controllerName: "Home");
+               
             }
 
             return View(medarbejder);
@@ -171,7 +180,7 @@ namespace RaunstrupAuth.Controllers
                              select d;
             ViewBag.Aid = new SelectList(kundeQuery.AsNoTracking(), "Aid", "Vejnavn", selectedAdresse);
         }
-                private void PopulateSpecialeDropDownList(object selectedSpeciale = null)
+        private void PopulateSpecialeDropDownList(object selectedSpeciale = null)
         {
             var kundeQuery = from d in _context.Speciale
                              orderby d.SpecialeNavn
