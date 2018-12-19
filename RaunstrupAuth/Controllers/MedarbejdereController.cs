@@ -32,8 +32,8 @@ namespace RaunstrupAuth.Controllers
         {
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Details),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder
@@ -42,8 +42,8 @@ namespace RaunstrupAuth.Controllers
                 .FirstOrDefaultAsync(m => m.Mid == id);
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Details),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(medarbejder);
@@ -80,15 +80,15 @@ namespace RaunstrupAuth.Controllers
         {
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Edit),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder.FindAsync(id);
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Edit),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             PopulateAdresseDropDownList();
             PopulateSpecialeDropDownList();
@@ -104,8 +104,8 @@ namespace RaunstrupAuth.Controllers
         {
             if (id != medarbejder.Mid)
             {
-                return RedirectToAction(actionName: nameof(Edit),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             if (ModelState.IsValid)
@@ -119,8 +119,8 @@ namespace RaunstrupAuth.Controllers
                 {
                     if (!MedarbejderExists(medarbejder.Mid))
                     {
-                        return RedirectToAction(actionName: nameof(Edit),
-                            controllerName: "Medarbejder");
+                        return RedirectToAction(actionName: nameof(Index),
+                            controllerName: "Home");
                     }
                     else
                     {
@@ -139,8 +139,8 @@ namespace RaunstrupAuth.Controllers
         {
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Delete),
-                    controllerName: "Medarbejder");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var medarbejder = await _context.Medarbejder
@@ -149,8 +149,8 @@ namespace RaunstrupAuth.Controllers
                 .FirstOrDefaultAsync(m => m.Mid == id);
             if (medarbejder == null)
             {
-                  return RedirectToAction(actionName: nameof(Delete),
-                      controllerName: "Medarbejder");
+                  return RedirectToAction(actionName: nameof(Index),
+                      controllerName: "Home");
                
             }
 

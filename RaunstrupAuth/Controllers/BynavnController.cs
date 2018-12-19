@@ -32,16 +32,16 @@ namespace RaunstrupAuth.Controllers
             
             if (!id.HasValue)
             {
-                return RedirectToAction(actionName: nameof(Details),
-                    controllerName: "Bynavn");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             var bynavn = await _context.Bynavn.FirstOrDefaultAsync(m => m.Byid == id);
 
 
-            if (!id.HasValue)
+            if (id != bynavn.Byid)
             {
-                return RedirectToAction(actionName: nameof(Details),
-                    controllerName: "Bynavn");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(bynavn);
@@ -77,16 +77,16 @@ namespace RaunstrupAuth.Controllers
             
             if (id == null)
             {
-                return RedirectToAction(actionName: nameof(Edit),
-                    controllerName: "Bynavn");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             
             var bynavn = await _context.Bynavn.FindAsync(id);
             
             if (id != bynavn.Byid)
             {
-                return RedirectToAction(actionName: nameof(Edit),
-                    controllerName: "Bynavn");
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             
             return View(bynavn);
