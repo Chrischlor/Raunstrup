@@ -64,12 +64,7 @@ namespace RaunstrupAuth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
-            }
+                       
 
             return Redirect("/Adresse/Create");
                 //View(bynavn);
@@ -88,7 +83,7 @@ namespace RaunstrupAuth.Controllers
             if (!id.HasValue)
             {
                 return RedirectToAction(actionName: nameof(Index),
-                    controllerName: "Home");
+                    controllerName: "");
             }
             return View(bynavn);
         }
@@ -98,7 +93,7 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ByID,Postnummer,Navn")] Bynavn bynavn)
+        public async Task<IActionResult> Edit(int id, [Bind("Byid,Postnummer,Navn")] Bynavn bynavn)
         {
             if (id != bynavn.Byid)
             {

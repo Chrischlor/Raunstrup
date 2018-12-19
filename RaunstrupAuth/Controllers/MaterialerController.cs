@@ -30,14 +30,16 @@ namespace RaunstrupAuth.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var materialer = await _context.Materialer
                 .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(materialer);
@@ -54,7 +56,7 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("materialeID,Navn,Indkøbspris,Salgspris")] Materialer materialer)
+        public async Task<IActionResult> Create([Bind("Varenummer,Navn,Indkøbspris,Salgspris")] Materialer materialer)
         {
             if (ModelState.IsValid)
             {
@@ -70,13 +72,15 @@ namespace RaunstrupAuth.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var materialer = await _context.Materialer.FindAsync(id);
             if (materialer == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
             return View(materialer);
         }
@@ -86,11 +90,12 @@ namespace RaunstrupAuth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("materialeID,Navn,Indkøbspris,Salgspris")] Materialer materialer)
+        public async Task<IActionResult> Edit(int id, [Bind("Varenummer,Navn,Indkøbspris,Salgspris")] Materialer materialer)
         {
             if (id != materialer.Varenummer)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             if (ModelState.IsValid)
@@ -104,7 +109,8 @@ namespace RaunstrupAuth.Controllers
                 {
                     if (!MaterialerExists(materialer.Varenummer))
                     {
-                        return NotFound();
+                        return RedirectToAction(actionName: nameof(Index),
+                            controllerName: "Home");
                     }
                     else
                     {
@@ -121,14 +127,16 @@ namespace RaunstrupAuth.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             var materialer = await _context.Materialer
                 .FirstOrDefaultAsync(m => m.Varenummer == id);
             if (materialer == null)
             {
-                return NotFound();
+                return RedirectToAction(actionName: nameof(Index),
+                    controllerName: "Home");
             }
 
             return View(materialer);
