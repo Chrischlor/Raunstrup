@@ -19,7 +19,7 @@ namespace RaunstrupWEBApi.Controllers
         }
 
         // GET: api/Projects/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "Get")] 
         public string Get(int id)
         {
             return "value";

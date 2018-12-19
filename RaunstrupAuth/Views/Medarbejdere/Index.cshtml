@@ -7,7 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>  
+    <a asp-action="Create">Create New</a>
+</p>
+<p>
+    <a href="api/apimedarbejder">Print</a>   
 </p>
 
 @* laver en tabel med data fra flere tabeler og bruger en foreach til at delle alt dataen ud i viewet *@
@@ -66,8 +69,8 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Mid">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Mid">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Mid">Delete</a> |
-                    <a href="api/apimedarbejder">Print</a>
+                    <a asp-action="Delete" asp-route-id="@item.Mid">Delete</a>
+                    
                 </td>
             </tr>
         }

@@ -77,9 +77,9 @@ namespace RaunstrupAuth.Controllers
             return File(file, "application/pdf", "medarbejder.pdf" );
 
                }
+        
             }
-
-         }
+       } 
 
 
 
